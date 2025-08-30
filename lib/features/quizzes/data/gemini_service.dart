@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GeminiService {
-  static const String _apiKey = 'AIzaSyD0v261kYZWcW7dyU8ePUvdgWooluSvfVc';
+  static const String _apiKey = 'AIzaSyCa0HZX847sYuv4bOIVy4U6yH0UplwJuTM';
   final List<Map<String, String>> _conversationHistory = [];
 
   Future<List<String>> selectQuizQuestions(
@@ -101,7 +101,10 @@ dont add the \'\'\' json thing just stright to the point as an api.
         final innerJson = jsonDecode(
           responseData['candidates'][0]['content']['parts'][0]['text'],
         );
-        _conversationHistory.add({'role': 'assistant', 'content': innerJson});
+        _conversationHistory.add({
+          'role': 'assistant',
+          'content': innerJson['feedback'],
+        });
 
         final status = innerJson['status'];
         final feedback = innerJson['feedback'];
